@@ -1,0 +1,62 @@
+
+.shipping-form {
+    display: grid;
+
+    grid-template-areas: "profile-name profile-name"
+                         "first-name last-name"
+                         "email phone"
+                         "address1 address1"
+                         "address2 address2"
+                         "country state"
+                         "city zip-code"
+                         "empty save";
+}
+
+.profile-name {
+    grid-area: profile-name;
+}
+
+.first-name {
+    grid-area: first-name;
+}
+
+.last-name {
+    grid-area: last-name;
+}
+
+.email {
+    grid-area: email;
+}
+
+.phone {
+    grid-area: phone;
+}
+
+.address1 {
+    grid-area: address1;
+}
+
+.address2 {
+    grid-area: address2;
+}
+
+.country {
+    grid-area: country;
+}
+
+.state {
+    grid-area: state;
+}
+
+.city {
+    grid-area: city;
+}
+
+.zip-code {
+    grid-area: zip-code;
+}
+
+.save-button {
+    grid-area: save;
+    justify-self: end;
+}

@@ -1,0 +1,7 @@
+<div class="changelog-item">
+    <span class="changelog-item__version" [ngClass]="{'green-fg': mostRecent}">Version {{change.version}}</span>
+    <span class="changelog-item__date">{{change.date | date: 'MMM d'}}</span>
+    <ul class="changelog-item__update-list">
+        <li class="changelog-item__update gray-fg" *ngFor="let update of change.updates">-&nbsp;&nbsp;{{update}}</li>
+    </ul>
+</div>

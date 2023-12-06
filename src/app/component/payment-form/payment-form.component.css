@@ -1,0 +1,34 @@
+
+.payment-form {
+    display: grid;
+    grid-template-areas: "card-holder card-holder"
+                         "card-number card-number"
+                         "expiration-month expiration-year"
+                         "cvv save";
+}
+
+.card-holder {
+    grid-area: card-holder;
+}
+
+.card-number {
+    grid-area: card-number;
+}
+
+.expiration-month {
+    grid-area: expiration-month;
+}
+
+.expiration-year {
+    grid-area: expiration-year;
+}
+
+.cvv {
+    grid-area: cvv;
+}
+
+.save-button {
+    grid-area: save;
+    justify-self: end;
+    align-self: end;
+}

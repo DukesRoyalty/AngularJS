@@ -1,0 +1,52 @@
+<div class="pane-group">
+
+    <div class="pane pane__settings">
+        <div class="pane__title">
+            <span class="pane__title-text">Settings</span>
+        </div>
+        <div class="pane__content-settings pane__content">
+            <div class="settings__user-banner">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Pizza_Hut_1967-1999_logo.svg/187px-Pizza_Hut_1967-1999_logo.svg.png" class="settings__user-banner-image">
+                <span class="settings__user-banner-name">PizzaTheHut#0001</span>
+                <span class="settings__user-banner-status white-fg">Active</span>
+                <a class="settings__user-banner-deactivate orange-fg">Deactivate ></a>
+                <a class="settings__user-banner-dashboard" routerLink="/analytics">Dashboard ></a>
+            </div>
+            <div class="settings__card settings__license">
+                <app-icon icon="key" class="settings__card-icon"></app-icon>
+                <span class="settings__card-label gray-fg">License Type</span>
+                <span class="settings__card-value">Renewal</span>
+            </div>
+            <div class="settings__card settings__renewal">
+                <app-icon icon="calendar" class="settings__card-icon"></app-icon>
+                <span class="settings__card-label gray-fg">Renewal Date</span>
+                <span class="settings__card-value">mm.dd.yyyy</span>
+
+            </div>
+            <div class="settings__webhook form webhook-form" [formGroup]="webhookForm">
+                <label class="form-input-field discord-webhook">
+                    <span>Discord Webhook <app-form-validation-warning [control]="webhookForm.get('webhook')"
+                            message="Required">
+                        </app-form-validation-warning></span>
+                    <input class="form-input" placeholder="Enter Webhook" formControlName="webhook">
+                </label>
+                <app-icon-button [disable]="!webhookForm.valid" text="Test" icon="play2" (click)="test()" bgcolor="blue"
+                    class="test-button">
+                </app-icon-button>
+                <app-icon-button [disable]="!webhookForm.valid" text="Save" icon="save" (click)="save()" bgcolor="green"
+                    class="save-button">
+                </app-icon-button>
+            </div>
+        </div>
+        <div class="octane-background-image"></div>
+    </div>
+
+    <div class="pane pane__changelog">
+        <div class="pane__title pane__title--minor">
+            Changelog
+        </div>
+        <div class="pane__content-changelog pane__content">
+            <app-changelog *ngFor="let change of changes; let i = index" [change]="change" [mostRecent]="i === 0"></app-changelog>
+        </div>
+    </div>
+</div>

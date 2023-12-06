@@ -1,0 +1,4 @@
+<button class="icon-button" [ngClass]="[bgcolor + '-bg', fgcolor + '-fg', disable ? 'disabled-button' : '', text ? 'icon-button--wide' : '', 'icon-button--' + size]">
+    <app-svg [src]="icon" [ngClass]="[!icon ? 'invisible' : '', size + '-svg']"></app-svg>
+    <span [ngClass]="{'invisible': !text, 'icon-button__label': true}">{{text}}</span>
+</button>

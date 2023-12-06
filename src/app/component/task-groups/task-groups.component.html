@@ -1,0 +1,162 @@
+<div class="pane-group">
+    <div class="pane pane__task-groups">
+        <div class="pane__title">
+            Task Groups
+            <app-icon-button icon="plus" (click)="showTaskGroupCreation()"></app-icon-button>
+        </div>
+        <div class="pane__content-task-groups pane__content">
+            <div class="task-group" [ngClass]="{'task-group--selected': taskGroup === selectedTaskGroup}"
+             *ngFor="let taskGroup of taskGroups" (click)="selectTaskGroup(taskGroup)">
+                <app-icon icon="tasks"></app-icon>
+                <div class="task-group__detail">
+                    <div class="task-group__detail__title">
+                        {{taskGroup.name}}
+                    </div>
+                    <div class="task-group__detail__sub-title">
+                        {{taskGroup.tasks.length}} Tasks
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pane pane__ftl-restocks">
+        <div class="pane__title">
+            <span  *ngIf="taskGroups.length" class="pane__title-text">{{selectedTaskGroup.name}}</span>
+            <app-icon-button icon="plus" class="pane__title-add-button" (click)="showTaskCreation(selectedTaskGroup)"></app-icon-button>
+            <app-icon-button icon="play2" bgcolor="green" text="Start All" (click)="startAllByGroupName(selectedTaskGroup.name)" class="pane__title-button start-all-button">
+            </app-icon-button>
+            <app-icon-button icon="square" bgcolor="orange" text="Stop All" (click)="stopAllByGroupName(selectedTaskGroup.name)" class="pane__title-button stop-all-button">
+            </app-icon-button>
+            <app-icon-button icon="pencil" bgcolor="blue" text="Edit All" class="pane__title-button edit-all-button">
+            </app-icon-button>
+            <app-icon-button icon="trash" bgcolor="red" text="Delete All" (click)="deleteAllByGroupName(selectedTaskGroup.name)" class="pane__title-button delete-all-button">
+            </app-icon-button>
+
+        </div>
+        <div class="pane__content">
+            <div class="task-table table">
+                <div class="table__header">ID</div>
+                <div class="table__header">Store</div>
+                <div class="table__header">Item</div>
+                <div class="table__header">Size</div>
+                <div class="table__header">Profile</div>
+                <div class="table__header">Proxy</div>
+                <div class="table__header">Status</div>
+                <div class="table__header">Actions</div>
+                <ng-container *ngIf="selectedTaskGroup">
+                    <ng-container *ngFor="let task of selectedTaskGroup.tasks; let i = index">
+                        <div class="table__cell">{{i + 1}}</div>
+                        <div class="table__cell">{{selectedTaskGroup.store}}</div>
+                        <div class="table__cell">{{task.item.name}}</div>
+                        <div class="table__cell">{{task.item.size}}</div>
+                        <div class="table__cell">{{task.profile}}</div>
+                        <div class="table__cell">{{task.proxy}}</div>
+                        <div class="table__cell" [ngClass]="{
+                            'red-fg': task.status === 'Payment Error',
+                            'green-fg': task.status === 'Checked Out',
+                            'octane-fg': task.status === 'Carting',
+                            'orange-fg': task.status === 'In Queue',
+                            'white-fg': task.status === 'Waiting For Restock',
+                            'gray-fg': task.status === 'Idle'
+                        }">{{task.status}}</div>
+                        <div class="table__cell--actions table__cell">
+                            <app-icon-button icon="square" fgcolor="orange" bgcolor="transparent" size="small"
+                                class="table__cell--button test-proxy-button" (click)="stopTaskFromList(selectedTaskGroup.name, task)"></app-icon-button>
+                            <app-icon-button icon="play2" fgcolor="green" bgcolor="transparent" size="small"
+                                class="table__cell--button test-proxy-button" (click)="startTaskFromList(selectedTaskGroup.name, task)"></app-icon-button>
+                            <app-icon-button icon="pencil" bgcolor="transparent" size="small"
+                                class="table__cell--button test-proxy-button"></app-icon-button>
+                            <app-icon-button icon="trash" fgcolor="red" bgcolor="transparent" size="small"
+                                class="table__cell--button  delete-proxy-button" (click)="deleteTaskFromList(selectedTaskGroup.name, task)"></app-icon-button>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-popup *ngIf="shouldShowTaskCreation" popupTitle="{{selectedTaskGroup.name}}" (onPopupClosed)="shouldShowTaskCreation = false">
+    <div class="form task-form" [formGroup]="taskForm">
+        <label class="form-input-field monitor-input">
+            <span>Monitor Input <app-form-validation-warning [control]="taskForm.get('monitorInput')"
+                    message="Required">
+                </app-form-validation-warning></span>
+            <input class="form-input" placeholder="Enter SKU/PID/Keywords" formControlName="monitorInput">
+        </label>
+        <label class="form-input-field size-input">
+            <span>Size <app-form-validation-warning [control]="taskForm.get('size')" message="Required">
+            </app-form-validation-warning></span>
+        <!-- <input class="form-input" placeholder="Select Size" formControlName="size"> -->
+        <select #sizeDropDownList class="form-input" placeholder="Select Size" formControlName="size" (blur)="onSizeDropDownChange(sizeDropDownList.value)">
+            <option disabled selected>Select</option>
+            <option *ngFor="let size of sizes" value="{{size.value}}">{{size.value}}</option>
+        </select>
+        </label>
+        <label class="form-input-field profile-input">
+            <span>Profile <app-form-validation-warning [control]="taskForm.get('profile')" message="Required">
+            </app-form-validation-warning></span>
+        <!-- <input class="form-input" placeholder="Select Profile" formControlName="profile"> -->
+        <select #profileDropDownList class="form-input" placeholder="Select Profile" formControlName="profile" (blur)="onProfileDropDownChange(profileDropDownList.value)">
+            <option disabled selected>Select</option>
+            <option *ngFor="let profile of profiles" value="{{profile.shipping.name}}">{{profile.shipping.name}}
+            </option>
+        </select>
+        </label>
+        <label class="form-input-field proxy-input">
+            <span>Proxy <app-form-validation-warning [control]="taskForm.get('proxy')" message="Required">
+            </app-form-validation-warning></span>
+        <!-- <input class="form-input" placeholder="Select Proxy" formControlName="proxy"> -->
+        <select #proxyDropDownList class="form-input" placeholder="Select Proxy" formControlName="proxy" (blur)="onProxyDropDownChange(proxyDropDownList.value)">
+            <option disabled selected>Select</option>
+            <option *ngFor="let proxy of proxies" value="{{proxy.name}}">{{proxy.name}}
+            </option>
+        </select>
+        </label>
+        <label class="form-input-field quantity-input">
+            <span>Quantity <app-form-validation-warning [control]="taskForm.get('quantity')" message="Required">
+                </app-form-validation-warning></span>
+            <input class="form-input" placeholder="Select Quantity" formControlName="quantity" type="number" min="1"
+                max="100">
+        </label>
+
+        <div class="task-form__action-buttons">
+            <button class="ghost-button task-form__cancel-button"
+                (click)="shouldShowTaskCreation = false">Cancel</button>
+            <app-icon-button [disable]="!taskForm.valid" text="Save" (click)="save()" icon="save" bgcolor="green"
+                class="task-form__save-button">
+            </app-icon-button>
+        </div>
+    </div>
+</app-popup>
+
+<app-popup *ngIf="shouldShowGroupCreation" popupTitle="Create Task Group"
+    (onPopupClosed)="shouldShowGroupCreation = false">
+    <div class="form task-form" [formGroup]="taskGroupForm">
+        <label class="form-input-field state">
+            <span>Group Name <app-form-validation-warning [control]="taskGroupForm.get('name')"
+                    message="Required">
+                </app-form-validation-warning></span>
+            <input class="form-input" placeholder="Group Name" formControlName="name">
+        </label>
+        <label class="form-input-field state">
+            <span>Site <app-form-validation-warning [control]="taskGroupForm.get('site')"
+                    message="Required"></app-form-validation-warning>
+            </span>
+            <select #siteDropDownList class="form-input" placeholder="Select Site" formControlName="site"
+                (blur)="onSiteDropDownChange(siteDropDownList.value)">
+                <option disabled selected>Select Site</option>
+                <option *ngFor="let site of sites" value="{{site}}">{{site}}</option>
+            </select>
+        </label>
+
+        <div class="task-form__action-buttons">
+            <button class="ghost-button task-form__cancel-button"
+                (click)="shouldShowGroupCreation = false">Cancel</button>
+            <app-icon-button [disable]="!taskGroupForm.valid" text="Save" (click)="saveTaskGroup()" icon="save"
+                bgcolor="green" class="task-form__save-button">
+            </app-icon-button>
+        </div>
+    </div>
+</app-popup>

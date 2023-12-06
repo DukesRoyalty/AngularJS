@@ -1,0 +1,25 @@
+.icon-button {
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: var(--border-radius);
+
+}
+
+.icon-button--medium {
+    padding: var(--padding-thick);
+}
+
+.icon-button--small {
+    padding: var(--padding-narrow);
+}
+
+.icon-button__label {
+    padding-left: var(--padding-thick);
+    padding-right: var(--padding-thick);
+}
+
+.icon-button--wide {
+    padding-left: calc(2 * var(--padding-thick));
+}

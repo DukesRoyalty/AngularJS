@@ -1,0 +1,44 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: calc(3 * var(--padding-thick));
+}
+
+.nav__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: 100%;
+    padding: 0;
+}
+
+app-nav-button {
+  margin-bottom: var(--margin-thick);
+}
+
+.nav__logo {
+  margin-bottom: calc(3 * var(--margin-thick));
+  margin-top: var(--margin-narrow);
+  animation: other 0.25s linear 1;
+}
+
+.nav__logo:hover {
+  animation: rotate 0.75s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes other {
+  to {
+    transform: rotate(360deg);
+  }
+}

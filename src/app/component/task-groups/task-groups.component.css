@@ -1,0 +1,110 @@
+.pane__task-groups {
+    width: 25%;
+}
+
+.pane__ftl-restocks {
+    width: 75%;
+}
+
+.pane__content-task-groups {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    row-gap: var(--margin-thick);
+}
+
+.task-group {
+    background-color: var(--light-bg-color);
+    padding: var(--padding-thick);
+    padding-left: calc(2 * var(--padding-thick));
+    border-radius: var(--border-radius);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.task-group--selected, .task-group--selected *{
+    background-color: var(--dark-blue-button-bg-color);
+    color: var(--main-fg-color);
+}
+
+.task-group__detail {
+    padding-left: var(--padding-narrow);
+}
+
+.task-group__detail__title {
+    font-size: var(--minor-title-font-size);
+    padding: var(--padding-narrow);
+    font-weight: bold;
+}
+
+.task-group__detail__sub-title {
+    color: var(--dark-blue-button-bg-color);
+    padding: var(--padding-narrow);
+}
+
+.task-table {
+    grid-template-columns: max-content minmax(max-content, 1fr) 2fr minmax(max-content, 1fr) minmax(max-content, 1fr) minmax(max-content, 1fr) minmax(max-content, 1fr) minmax(max-content, 1fr);
+}
+
+.start-all-button {
+    grid-area: b1;
+}
+
+.stop-all-button {
+    grid-area: b2;
+}
+
+.edit-all-button {
+    grid-area: b3;
+}
+
+.delete-all-button {
+    grid-area: b4;
+}
+
+.task-form {
+    display: grid;
+    grid-template-areas: "monitor-input monitor-input"
+                         "size-input profile-input"
+                         "proxy-input quantity-input"
+                         "empty action-buttons";
+}
+
+.monitor-input {
+    grid-area: monitor-input;
+}
+
+.size-input {
+    grid-area: size-input;
+}
+
+.profile-input {
+    grid-area: profile-input;
+}
+
+.proxy-input {
+    grid-area: proxy-input;
+}
+
+.quantity-input {
+    grid-area: quantity-input;
+}
+
+.task-form__action-buttons {
+    grid-area: action-buttons;
+    display: grid;
+    grid-template-areas: "cancel save";
+    column-gap: var(--margin-thick);
+    justify-content: end;
+}
+
+.task-form__save-button {
+    grid-area: save;
+}
+
+.task-form__cancel-button {
+    grid-area: cancel;
+}

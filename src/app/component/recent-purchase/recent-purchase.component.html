@@ -1,0 +1,16 @@
+<div class="recent-purchase">
+    <img class="recent-purchase__image" [src]="checkout.item.image">
+    <div class="recent-purchase__data-date">
+        {{checkout.date | date}}
+    </div>
+    <div class="recent-purchase__data-name">
+        {{checkout.item.name}}
+    </div>
+    <div class="recent-purchase__data-more">
+        {{checkout.store}} Size {{checkout.item.size}}
+    </div>
+    <div class="recent-purchase__button">
+
+        <app-icon-button icon="chevron" fgcolor="octane" bgcolor="gray"></app-icon-button>
+    </div>
+</div>

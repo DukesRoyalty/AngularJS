@@ -1,0 +1,75 @@
+<div class="pane-group">
+    <div class="pane__analytics pane">
+        <div class="pane__title">
+            <div class="pane__title-text">Analytics</div>
+        </div>
+        <div class="pane__content-analytics pane__content">
+            <div class="analytics__overview-column">
+                <div class="pane__content-overview-cards pane__content">
+                    <div class="calendar-card overview-card">
+                        <app-icon icon="calendar"></app-icon>
+                        <div class="overview-card__detail">
+                            <div class="calendar-card__time">
+                                {{ date | date: 'hh:mm:ss aaa' }}
+                            </div>
+                            <div class="calendar-card__date">
+                                {{ date | date: 'MMM d' }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-card">
+                        <app-icon class="checkout-card__icon" icon="cart" fgcolor="green"></app-icon>
+                        <div class="checkout-card__detail">
+                            <div class="checkout-card__detail-label">
+                                Total Checkouts
+                            </div>
+                            <div class="checkout-card__detail-value">
+                                24
+                            </div>
+                        </div>
+                        <div class="checkout-card__bottom">
+                            <app-svg src="checkmark" [classes]="['green-fg', 'white-bg', 'round', 'big-svg']" class="checkout-card__bottom-icon"></app-svg>
+                            <app-svg src="checklist" [classes]="['white-fg', 'very-big-svg']" class="checkout-card__bottom-document"></app-svg>
+                        </div>
+                    </div>
+                    <div class="checkout-card">
+                        <app-icon class="checkout-card__icon" icon="x" fgcolor="red"></app-icon>
+                        <div class="checkout-card__detail">
+                            <div class="checkout-card__detail-label">
+                                Total Declined
+                            </div>
+                            <div class="checkout-card__detail-value">
+                                8
+                            </div>
+                        </div>
+                        <div class="checkout-card__bottom">
+                            <app-svg src="circlex" [classes]="['red-fg', 'white-bg', 'round', 'big-svg']" class="checkout-card__bottom-icon"></app-svg>
+                            <app-svg src="checklist" [classes]="['white-fg', 'very-big-svg']" class="checkout-card__bottom-document"></app-svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="analytics__graph-column">
+                <app-graph></app-graph>
+            </div>
+            
+        </div>
+    </div>
+    <div class="pane__recent-purchases pane">
+        <div class="pane__title">
+            <div class="pane__recent-purchases__title-text pane__title-text">Recent Purchases</div>
+        </div>
+        <div class="rp-qc pane__content">
+            <div class="pane__content-recent-purchases ">
+                <app-recent-purchase *ngFor="let checkout of checkouts" [checkout]="checkout"></app-recent-purchase>
+                <div style="min-height:60px"></div>
+            </div>
+            <div class="pane__content-quick-create">
+                <div class="quick-create__title">Quick Create</div>
+                <div class="quick-create-container">
+                    <app-quick-create *ngFor="let quickCreateTask of quickCreateTasks" [quickCreateTask]="quickCreateTask"></app-quick-create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

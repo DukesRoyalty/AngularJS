@@ -1,0 +1,60 @@
+.recent-purchase {
+    height: 12vh;
+    border-radius: var(--border-radius);
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    background-color: var(--light-bg-color);
+
+    display: grid;
+    grid-template-columns: 12vh max-content 1fr;
+    grid-auto-rows: 4vh;
+    align-items: center;
+
+    column-gap: calc(2 * var(--margin-thick));
+    padding-right: calc(2 * var(--padding-thick));
+}
+.recent-purchase__image {
+    width: 12vh;
+    height: 12vh;
+
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.recent-purchase__data-date {
+    color: var(--dark-blue-button-bg-color);
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    align-self: end;
+}
+
+.recent-purchase__data-name {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.recent-purchase__data-more {
+    color: var(--very-light-bg-color);
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;   
+    align-self: start;
+}
+.recent-purchase__button {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;   
+
+    width: max-content;
+    justify-self: end;
+}

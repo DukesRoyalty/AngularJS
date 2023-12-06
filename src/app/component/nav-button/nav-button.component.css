@@ -1,0 +1,16 @@
+.nav-button {
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+
+    width: 44px;
+    height: 44px;
+}
+
+
+.nav-button--active {
+    background-color: var(--dark-blue-button-bg-color);
+}

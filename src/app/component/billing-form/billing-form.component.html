@@ -1,0 +1,73 @@
+<div [formGroup]="billingForm" class="form billing-form">
+    <label class="form-input-field same-as-shipping">
+        <app-toggle-button [initial]="false" (onChange)="onSameAsShippingToggled($event)"></app-toggle-button>
+        <span class="toggle-label">Same as shipping</span>
+    </label>
+
+    <label class="form-input-field first-name">
+        <span>First Name <app-form-validation-warning [control]="billingForm.get('firstName')" message="Required">
+            </app-form-validation-warning></span>
+        <input class="form-input" formControlName="firstName" placeholder="Enter Name">
+    </label>
+    <label class="form-input-field last-name">
+        <span>Last Name <app-form-validation-warning [control]="billingForm.get('lastName')" message="Required">
+            </app-form-validation-warning></span>
+        <input class="form-input" formControlName="lastName" placeholder="Enter Name">
+    </label>
+    <label class="form-input-field email">
+        <span>Email <app-form-validation-warning [control]="billingForm.get('email')" message="Valid Email Required">
+            </app-form-validation-warning>
+        </span>
+        <input class="form-input" type="email" formControlName="email" placeholder="Enter Email">
+    </label>
+    <label class="form-input-field phone">
+        <span>Phone <app-form-validation-warning [control]="billingForm.get('phone')" message="Required">
+            </app-form-validation-warning>
+        </span>
+        <input class="form-input" type="tel" formControlName="phone" placeholder="Enter Phone">
+    </label>
+    <ng-container formGroupName="address">
+        <label class="form-input-field address1">
+            <span>Address 1 <app-form-validation-warning [control]="billingForm.controls.address.get('address1')"
+                    message="Required"></app-form-validation-warning>
+            </span>
+            <input class="form-input" formControlName="address1" placeholder="Enter Address">
+        </label>
+        <label class="form-input-field address2">
+            <span>Address 2 <app-form-validation-warning [control]="billingForm.controls.address.get('address2')">
+                </app-form-validation-warning>
+            </span>
+            <input class="form-input" formControlName="address2" placeholder="Enter Address">
+        </label>
+        <label class="form-input-field country">
+            <span>Country <app-form-validation-warning [control]="billingForm.controls.address.get('country')"
+                    message="Required"></app-form-validation-warning>
+            </span>
+            <input class="form-input" minlength="2" maxlength="2" formControlName="country"
+                placeholder="Select Country" disabled>
+        </label>
+        <label class="form-input-field state">
+            <span>State <app-form-validation-warning [control]="billingForm.controls.address.get('state')"
+                    message="Required"></app-form-validation-warning>
+            </span>
+            <select #stateDropDownList class="form-input" placeholder="Select State" formControlName="state" (blur)="onStateDropDownChange(stateDropDownList.value)">
+                <option disabled selected>Select</option>
+                <option *ngFor="let state of states" value="{{state.abbreviation}}">{{state.name}}</option>
+            </select>
+        </label>
+        <label class="form-input-field city">
+            <span>City <app-form-validation-warning [control]="billingForm.controls.address.get('city')"
+                    message="Required"></app-form-validation-warning>
+            </span>
+            <input class="form-input" formControlName="city" placeholder="Enter City">
+        </label>
+        <label class="form-input-field zip-code">
+            <span>Zip Code <app-form-validation-warning [control]="billingForm.controls.address.get('zip')"
+                    message="Required"></app-form-validation-warning>
+            </span>
+            <input class="form-input" formControlName="zip" placeholder="Enter Zip Code">
+        </label>
+    </ng-container>
+    <app-icon-button [disable]="determineValidation()" text="Save" icon="save" (click)="save()"  bgcolor="green" class="save-button">
+    </app-icon-button>
+</div>

@@ -1,0 +1,5 @@
+<div class="tab-row">
+    <button *ngFor="let option of options" (click)="onClick(option)" [ngClass]="{'tab-row__button': true, 'active' : option.active}">
+        {{option.tabTitle}}
+    </button>
+</div>

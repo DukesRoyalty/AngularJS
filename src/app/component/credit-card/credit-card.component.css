@@ -1,0 +1,61 @@
+.credit-card {
+    display: grid;
+    grid-template-areas: "chip actions"
+    "cardholder cardholder"
+    "cardnumber carddate";
+
+    background-color: var(--dark-blue-button-bg-color);
+    border-radius: var(--border-radius);
+    min-width: 300px;
+    max-width: 30vw;
+
+    column-gap: calc(5 * var(--margin-thick));
+}
+
+.credit-card__part  {
+    width: max-content;
+    padding: calc(2 * var(--padding-thick));
+}
+
+.chip {
+    grid-area: chip;
+}
+
+.card-actions {
+    grid-area: actions;
+    display: flex; 
+    flex-direction: row;
+    justify-content: flex-end;
+    justify-self: end;
+}
+
+.cardholder {
+    grid-area: cardholder;
+    padding-bottom: 0;
+}
+
+.cardnumber {
+    grid-area: cardnumber;
+}
+
+.carddate {
+    grid-area: carddate;
+    justify-self: end;
+    margin-right: var(--padding-thick);
+}
+
+.credit-card--background-0 {
+    background: linear-gradient(0.54turn, rgb(93, 159, 244) 50%, rgb( 119, 178, 253) 50%);
+}
+
+.credit-card--background-1 {
+    background: linear-gradient(0.54turn, rgb( 163, 127, 252) 50%, rgb( 176, 144, 255) 50%);
+}
+
+.credit-card--background-2 {
+    background: linear-gradient(0.54turn, rgb( 103, 103, 247) 50%, rgb( 119, 119, 253) 50%);
+}
+
+.credit-card--background-3 {
+    background: linear-gradient(0.54turn, rgb( 37, 92, 255) 50%, rgb( 50, 102, 255) 50%);
+}

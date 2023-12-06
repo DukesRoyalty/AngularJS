@@ -1,0 +1,30 @@
+<div class="pane-group">
+
+    <div class="pane pane__profiles">
+        <div class="pane__title">
+            <span class="pane__title-text">Profiles</span>
+            <app-icon-button icon="plus" class="pane__title-add-button"></app-icon-button>
+        </div>
+        <div class="pane__content">
+            <app-tab [options]="tabOptions" (optionSelected)="tabChange($event)" #Tab></app-tab>
+            <div [ngClass]="{'profile__form': true, 'invisible': !isActive('shipping')}">
+                <app-shipping-form (sendShippingInfo)="saveShipping()" #ShippingForm [profile]="profile"></app-shipping-form>
+            </div>
+            <div [ngClass]="{'profile__form': true, 'invisible': !isActive('billing')}">
+               <app-billing-form (sendBillingInfo)="saveBilling()" #BillingForm [profile]="profile"></app-billing-form>
+            </div>
+            <div [ngClass]="{'profile__form': true, 'invisible': !isActive('payment')}">
+                <app-payment-form (sendPaymentInfo)="savePayment()" #PaymentForm [profile]="profile"></app-payment-form>
+            </div>
+        </div>
+    </div>
+
+    <div class="pane pane__cards">
+        <div class="pane__title">
+            <app-icon-button icon="trash" bgcolor="red" text="Delete All" (click)="deleteAllProfiles()" class="pane__title-button delete-all-button"></app-icon-button>
+        </div>
+        <div class="pane__content pane__content--cards">
+            <app-credit-card (onProfileEdit)="editProfile($event)" (onProfileDelete)="deleteProfile($event)" *ngFor="let card of cards" [card]="card"></app-credit-card>
+        </div>
+    </div>
+</div>

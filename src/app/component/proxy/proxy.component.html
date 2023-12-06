@@ -1,0 +1,41 @@
+<div class="pane-group">
+
+    <div class="pane pane__proxy-form">
+        <div class="pane__title">
+            <span class="pane__title-text">Proxies</span>
+        </div>
+        <div class="proxy-form pane__content">
+            <div class="proxy-form__title">
+                Input Proxies
+            </div>
+            <textarea class="proxy-form__textarea form-input" [(ngModel)]="userInput">
+                ip:port:user:pass
+            </textarea>
+            <input class="form-input" [(ngModel)]="inputName" placeholder="Enter Name">
+            <app-icon-button [disable]="!userInput && !inputName" text="Save" icon="save" (click)="save()" bgcolor="green" class="proxy-form__save-button">
+            </app-icon-button>
+        </div>
+    </div>
+
+    <div class="pane pane__proxy-table">
+        <div class="pane__title">
+            <app-icon-button icon="play2" bgcolor="green" text="Test All" class="test-all-button pane__title-button"></app-icon-button>
+            <app-icon-button icon="trash" bgcolor="red" text="Delete All" (click)="deleteAll()" class="delete-all-button pane__title-button"></app-icon-button>
+        </div>
+        <div class="pane__content">
+            <div class="proxy-table table">
+                <div class="table__header">Proxy</div>
+                <div class="table__header">Status</div>
+                <div class="table__header">Actions</div>
+                <ng-container *ngFor="let proxy of proxies">
+                    <div class="table__cell">{{proxy.proxy}}</div>
+                    <div class="table__cell green-fg">{{proxy.status}}</div>
+                    <div class="table__cell--actions table__cell">
+                        <app-icon-button icon="play2" fgcolor="green" bgcolor="transparent" size="small" class="table__cell--button test-proxy-button"></app-icon-button>
+                        <app-icon-button icon="trash" fgcolor="red" bgcolor="transparent" size="small" class="table__cell--button  delete-proxy-button"></app-icon-button>            
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+.changelog-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: var(--margin-thick);
+
+    border-width: 0 0 1px 0;
+    border-color: var(--very-light-bg-color);
+    border-style: solid;
+
+    margin-top: var(--margin-thick);
+    padding-right: var(--padding-thick);
+}
+
+.changelog-item__update {
+    margin-bottom: var(--margin-narrow);
+}
+
+.changelog-item__update-list {
+    list-style-type: none;
+}
+  
+
+.changelog-item__date {
+    justify-self: end;
+}

@@ -1,0 +1,12 @@
+<div class="quick-create">
+    <img class="quick-create__image" [src]="quickCreateTask.item.image">
+    <div class="quick-create__data-date">
+        {{quickCreateTask.date | date}}
+    </div>
+    <div class="quick-create__data-name">
+        {{quickCreateTask.item.name}}
+    </div>
+    <div class="quick-create__button">
+        <a class="blue-fg">Create Task ></a>
+    </div>
+</div>

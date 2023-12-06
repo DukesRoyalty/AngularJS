@@ -1,0 +1,18 @@
+.tab-row__button {
+    background-color: transparent;
+    border: none;
+    color: var(--main-fg-color);
+    margin: 0 var(--margin-narrow) 0 var(--margin-narrow);
+    padding: var(--padding-thick);
+}
+.active {
+    border-width: 0 0 var(--border-width-thin);
+    border-color: var(--dark-blue-button-bg-color);
+    border-style: solid;
+}
+.tab-row {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--dark-bg-color);
+    margin-bottom: var(--margin-thick);
+}

@@ -1,0 +1,33 @@
+.status-container {
+    width: 100%;
+    display: grid;
+    grid-template-areas: "image";
+    padding-bottom: var(--padding-thick);
+}
+
+.status-container__profile-image {
+    grid-area: image;
+    width: calc(4 * var(--main-font-size));
+    height: calc(4 * var(--main-font-size));
+    background-color: white;
+    border-radius: 100%;
+
+}
+.status-container__status-indicator__background {
+    grid-area: image;
+    background-color: var(--main-bg-color);
+    width: var(--main-font-size);
+    height: var(--main-font-size);
+    align-self: end;
+    justify-self: end;
+    border-radius: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.status-container__status-indicator__foreground {
+    width: 66%;
+    height: 66%;
+    border-radius: 100%;
+}

@@ -1,0 +1,28 @@
+<div class="graph-column">
+
+    <div class="graph-column__title-card">
+        <div class="graph-column__title-card__left">
+            <app-icon icon="dollar"></app-icon>
+            <div class="graph-column__title-card__left__detail">
+                <div class="graph-column__title-card__left__label">
+                    Total Money Spent
+                </div>
+                <div class="graph-column__title-card__left__value">
+                    $3,456
+                </div>
+            </div>
+        </div>
+        <div class="graph-column__option-bar">
+            <button class="option-bar__button" *ngFor="let timeOption of timeOptions"
+                [ngClass]="{'option-bar__button--selected': timeOption.selected}" (click)="onTimeOptionSelected(timeOption)">{{ timeOption.name }}</button>
+        </div>
+    </div>
+    <div class="graph-column__graph">
+        <x-chartist
+        [type]="type"
+        [data]="data"
+        [options]="options"
+        [events]="events"
+      ></x-chartist>
+    </div>
+</div>

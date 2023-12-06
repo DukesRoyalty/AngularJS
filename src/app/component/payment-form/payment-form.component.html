@@ -1,0 +1,30 @@
+<div class="form payment-form" [formGroup]="paymentForm">
+    <label class="form-input-field card-holder">
+        <span>Card Holder <app-form-validation-warning [control]="paymentForm.get('cardHolder')" message="Required">
+        </app-form-validation-warning></span>
+        <input class="form-input" placeholder="Enter Card Holder" formControlName="cardHolder">
+    </label>
+    <label class="form-input-field card-number">
+        <span>Card Number <app-form-validation-warning [control]="paymentForm.get('cardNumber')" message="Required">
+        </app-form-validation-warning></span>
+        <input class="form-input" placeholder="Enter Card Number" formControlName="cardNumber">
+    </label>
+    <label class="form-input-field expiration-month">
+        <span>Expiration Month <app-form-validation-warning [control]="paymentForm.get('expirationMonth')" message="Required">
+        </app-form-validation-warning></span>
+        <input class="form-input" type="number" min="1" max="12" placeholder="MM" formControlName="expirationMonth">
+    </label>
+    <label class="form-input-field expiration-year">
+        <span>Expiration Year <app-form-validation-warning [control]="paymentForm.get('expirationYear')" message="Required">
+        </app-form-validation-warning></span>
+        <input class="form-input" type="number" min="2021" max="3000" placeholder="YYYY" formControlName="expirationYear">
+    </label>
+    <label class="form-input-field cvv">
+        <span>CVV <app-form-validation-warning [control]="paymentForm.get('cvv')" message="Required">
+        </app-form-validation-warning></span>
+        <input class="form-input" type="number" maxlength="4" minlength="3" placeholder="Enter CVV" formControlName="cvv">
+    </label>
+
+    <app-icon-button [disable]="!paymentForm.valid" text="Save" icon="save" bgcolor="green" (click)="save()" class="save-button">
+    </app-icon-button>
+</div>

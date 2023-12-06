@@ -1,0 +1,19 @@
+<div [ngClass]="['credit-card', backgroundStyle]">
+    <div class="credit-card__part chip">
+        <app-svg src="chip" [classes]="['big-svg']"></app-svg>
+    </div>
+    <div class="credit-card__part card-actions">
+        <app-icon-button icon="pencil" size="small" (click)="updateProfile(card.profileName)" bgcolor="transparent"></app-icon-button>
+        <app-icon-button icon="trash" size="small" (click)="deleteProfile(card.profileName)" bgcolor="transparent"></app-icon-button>
+    </div>
+    <div class="credit-card__part cardholder">
+        {{ card.profileName }}
+    </div>
+    <div class="credit-card__part cardnumber">
+        **** **** **** {{ card.card_number.substr(-4) }}
+    </div>
+    <div class="credit-card__part carddate">
+        {{card.month}}/{{card.year.toString().substr(-2)}}
+    </div>
+
+</div>
